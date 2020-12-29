@@ -17,7 +17,7 @@ class Ecmwf(BundlePackage):
     version('main', branch='main')
 
     depends_on('ecbuild')
-    depends_on('eckit~mkl~git~flex~curl~bzip2~bison~lz4+curses')
+    depends_on('eckit') #~mkl~git~flex~curl~bzip2~bison~lz4+curses')
     depends_on('fckit')
     depends_on('atlas')
 
