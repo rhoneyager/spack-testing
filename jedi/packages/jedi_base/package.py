@@ -33,3 +33,9 @@ class JediBase(BundlePackage):
     depends_on('netcdf-fortran') # buggy on macos 10.11
     # depends_on('nccmp')
 
+    # ecbuild
+    # eckit
+    # fckit
+    # atlas
+
+
