@@ -31,5 +31,5 @@ class JediBase(BundlePackage):
     # depends_on('parallel-netcdf')
     depends_on('netcdf-c')
     depends_on('netcdf-fortran') # buggy on macos 10.11
-    # depends_on('nccmp')
+    depends_on('nccmp')
 
