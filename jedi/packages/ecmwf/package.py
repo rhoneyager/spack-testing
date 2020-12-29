@@ -19,4 +19,5 @@ class Ecmwf(BundlePackage):
     depends_on('ecbuild')
     depends_on('eckit~mkl~git~flex~curl~bzip2~bison~lz4')
     depends_on('fckit')
+    depends_on('atlas')
 
