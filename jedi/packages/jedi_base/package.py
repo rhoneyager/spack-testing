@@ -17,20 +17,23 @@ class JediBase(Package):
     version('main', branch='main')
 
     depends_on('zlib+optimize+pic+shared')
+
+    # CMake needs to be built with apple-clang on macs.
     depends_on('cmake')
-    depends_on('udunits')
+
+    # depends_on('udunits') # broken on macos
     depends_on('openblas')
     depends_on('boost~atomic~chrono~clanglibcpp~container~context~coroutine~date_time~debug~exception~fiber~filesystem~graph~icu~iostreams~locale~log~math~mpi+multithreaded~numpy~pic~program_options~python~random~regex~serialization+shared~signals~singlethreaded+system~taggedlayout~test+thread~timer~versionedlayout~wave cxxstd=14 visibility=hidden')
     depends_on('eigen')
     depends_on('cgal+header-only')
     depends_on('szip')
-    depends_on('hdf5+hl+szip')
+    depends_on('hdf5+hl+szip') # version
     # depends_on('parallel-netcdf')
     depends_on('netcdf-c')
-    depends_on('netcdf-fortran')
+    depends_on('netcdf-fortran') # buggy on macos 10.11
     # depends_on('nccmp')
 
 
     def install(self, spec, prefix):
-        make()
-        make('install')
+        #make()
+        #make('install')
