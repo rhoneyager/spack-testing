@@ -6,7 +6,7 @@
 from spack import *
 
 
-class JediBase(Package):
+class JediBase(BundlePackage):
     """Base packages for jedi."""
 
     homepage = "https://github.com/rhoneyager/spack-fake-package"
@@ -27,13 +27,9 @@ class JediBase(Package):
     depends_on('eigen')
     depends_on('cgal+header-only')
     depends_on('szip')
-    depends_on('hdf5+hl+szip') # version
+    depends_on('hdf5@1.12.0+hl+szip') # version
     # depends_on('parallel-netcdf')
     depends_on('netcdf-c')
     depends_on('netcdf-fortran') # buggy on macos 10.11
     # depends_on('nccmp')
 
-
-    def install(self, spec, prefix):
-        #make()
-        #make('install')
