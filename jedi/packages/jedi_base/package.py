@@ -32,6 +32,6 @@ class JediBase(BundlePackage):
     depends_on('netcdf-c')
     depends_on('netcdf-fortran') # buggy on macos 10.11
     depends_on('nccmp')
-    depends_on('gsl-lite@0.34.0')
+    depends_on('gsl-lite')
     depends_on('ecbuild')
 
