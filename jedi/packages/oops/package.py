@@ -29,6 +29,5 @@ class Oops(CMakePackage):
     def cmake_args(self):
         res = [] 
         res.append('-DCMAKE_MODULE_PATH=' + self.spec['ecbuild'].prefix + '/share/ecbuild/cmake')
-        #res.append('-DCMAKE_MODULE_PATH='+os.environ['CMAKE_MODULE_PATH'])
         return res
 
