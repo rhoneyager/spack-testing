@@ -22,7 +22,7 @@ class Ufo(CMakePackage):
 
     # Optional: CRTM, RTTOV, GSW, ROPP-UFO, GEOS-AERO
     depends_on('ecbuild', type=('build'))
-    depends_on('jedi-cmake', type=('build'))
+    depends_on('jedi-cmake')
     depends_on('jedi-sdk-base')
     depends_on('oops')
     depends_on('ioda')
