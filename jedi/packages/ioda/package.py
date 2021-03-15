@@ -33,6 +33,12 @@ class Ioda(CMakePackage):
     depends_on('netcdf-c')
     depends_on('gsl-lite')
 
+    variant('bufr', default=False)
+    depends_on('bufr', when='+bufr')
+
+    variant('odc', default=False)
+    depends_on('odc', when='+odc')
+
     def cmake_args(self):
         res = [] 
         res.append('-DCMAKE_MODULE_PATH=' + self.spec['ecbuild'].prefix + '/share/ecbuild/cmake')

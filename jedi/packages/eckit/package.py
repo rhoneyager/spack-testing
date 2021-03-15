@@ -17,6 +17,7 @@ class Eckit(CMakePackage):
 
     version('release-stable', branch='release-stable')
     version('develop', branch='develop')
+    version('1.15.4', commit='a381112e15906230f8f1c9589313d0a04fb24a53')
     version('1.13.2', commit='2732c966cdeb46c5dc4d3644f373f27bdc839bf8')
     version('1.13.0', commit='8464759a7ea15b27768d0db460a275028b98d3fd')
     version('1.12.1', commit='71e727bab888721c3cb2a5a1e2d3ae6cf31956ac')
