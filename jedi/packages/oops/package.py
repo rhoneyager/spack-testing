@@ -24,7 +24,7 @@ class Oops(CMakePackage):
     depends_on('eckit')
     depends_on('fckit')
     depends_on('atlas')
-    depends_on('jedi_base')
+    depends_on('jedi-sdk-base')
 
     def cmake_args(self):
         res = [] 

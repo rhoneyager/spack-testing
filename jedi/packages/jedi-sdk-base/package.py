@@ -6,7 +6,7 @@
 from spack import *
 
 
-class JediBase(BundlePackage):
+class JediSdkBase(BundlePackage):
     """Base packages for jedi."""
 
     homepage = "https://github.com/rhoneyager/spack-fake-package"
