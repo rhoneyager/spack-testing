@@ -1,0 +1,63 @@
+{
+	"builders": [
+		{
+			"type": "lxd",
+			"name": "jedi-node-lxd",
+			"image": "ubuntu:focal",
+			"output_image": "jedi/u2004",
+			"publish_properties": {
+				"description": "Spackified jedi node"
+			}
+		},
+		{
+			"type": "amazon-ebs",
+			"name": "jedi-node-aws",
+			"ami_name": "ryan-jedi-node-u2004 ${local.timestamp}",
+			"ami_description": "Spackified JEDI stack and AWS node",
+			"region": "us-east-1",
+			"instance_type": "t2.small",
+			"source_ami": "ami-0b75998a97c952252",
+			"ssh_username": "ubuntu"
+		}
+	],
+	"provisioners": [
+		{
+			"type": "shell",
+			"inline": [
+				"export DEBIAN_FRONTEND=noninteractive",
+				"sudo apt update",
+				"sudo apt upgrade -y",
+				"sudo apt install -y --no-install-recommends autoconf automake bash bison bzip2 diffutils findutils flex git krb5-user libkrb5-dev libtool m4 libncurses-dev libssl-dev ninja-build openjdk-11-jdk perl pkg-config python3 ruby tar texinfo xz-utils",
+				"sudo apt install -y --no-install-recommends bc build-essential clang-format clang-tidy csh curl file gdb ksh less lldb lsb-release man-db nano openssh-server screen tcl tcsh time tk unzip vim-nox wget wish",
+				"sudo apt install -y --no-install-recommends gcc-10 g++-10 gfortran-10",
+				"sudo apt install -y --no-install-recommends gcc-9 g++-9 gfortran-9",
+				"sudo apt install -y --no-install-recommends gcc-8 g++-8 gfortran-8",
+				"sudo apt install -y --no-install-recommends clang-11 gfortran-10",
+				"sudo apt install -y --no-install-recommends clang-10 gfortran-10",
+				"sudo apt install -y --no-install-recommends clang-9 gfortran-9",
+				"sudo update-alternatives --install /usr/bin/g++ g++ $(which g++-10) 30",
+				"sudo update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 30",
+				"sudo update-alternatives --install /usr/bin/gcov gcov $(which gcov-10) 30",
+				"sudo update-alternatives --install /usr/bin/gfortran gfortran $(which gfortran-10) 30",
+				"sudo update-alternatives --install /usr/bin/clang clang $(which clang-11) 30",
+				"sudo update-alternatives --install /usr/bin/clang++ clang++ $(which clang-11) 30",
+				"sudo useradd -U -k /etc/skel -s /bin/bash -d /home/jedi -m jedi",
+				"sudo echo \"ulimit -s unlimited\" >> ~jedi/.bashrc",
+				"sudo echo \"ulimit -v unlimited\" >> ~jedi/.bashrc",
+				"sudo echo \"export PATH=$PATH:/home/jedi/spack/bin\" >> ~jedi/.bashrc",
+				"sudo printf \"[credential]\n helper = cache --timeout=7200\n\" >> ~jedi/.gitconfig",
+				"sudo mkdir ~jedi/.openmpi",
+				"sudo echo \"rmaps_base_oversubscribe = 1\" >> ~jedi/.openmpi/mca-params.conf",
+				"sudo chown -R jedi:jedi ~jedi/.gitconfig ~jedi/.openmpi",
+				"sudo -H -u jedi bash -c 'git clone https://github.com/spack/spack.git ~jedi/spack'",
+				"sudo -H -u jedi bash -c 'git clone https://github.com/rhoneyager/spack-testing.git ~jedi/spack/ryan'",
+				"sudo -H -u jedi bash -c '/home/jedi/spack/bin/spack repo add ~jedi/spack/ryan/jedi'",
+				"sudo -H -u jedi bash -c '/home/jedi/spack/bin/spack external find --not-buildable'",
+				"sudo -H -u jedi bash -c '/home/jedi/spack/bin/spack compiler find'",
+				"sudo echo \". ~jedi/spack/share/spack/setup-env.sh\" >> ~jedi/.bashrc"
+			]
+		}
+	]
+}
+
+
