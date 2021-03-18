@@ -17,11 +17,11 @@ class Atlas(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='develop')
+    version('0.23.0', commit='7e0a1251685e07a5dcccc84f4d9251d5a066e2ee')
     version('0.22.1', commit='e55e9c72883d24e3ed4d4eaaae330825a2d77dd3')
     version('0.22.0', commit='a70030278541d4c4e18ebf92b683951749d60049')
     version('0.21.0', commit='b7728bb798b9891ce62e1034fa21c0bc33a30cab')
 
-    #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
     depends_on('ecbuild', type=('build'))
     depends_on('eckit')
     variant('fckit', default=True)
@@ -42,6 +42,5 @@ class Atlas(CMakePackage):
         res = [
                 self.define_from_variant('ENABLE_FCKIT', 'fckit')
                 ] 
-        res.append('-DCMAKE_MODULE_PATH=' + self.spec['ecbuild'].prefix + '/share/ecbuild/cmake')
         return res
 

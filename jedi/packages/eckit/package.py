@@ -30,7 +30,6 @@ class Eckit(CMakePackage):
     version('1.11.1', commit='bb4b33d8a3a4d8f0c928ea65dbebd5cacb397edd')
     version('1.10.2', commit='77e462800336ff2c2cb0dc5c4bbbb3f231bd4d86')
 
-    #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
     depends_on('ecbuild', type=('build'))
 
     depends_on('perl@5:')
@@ -103,6 +102,5 @@ class Eckit(CMakePackage):
                 self.define_from_variant('ENABLE_SSL', 'openssl'),
                 self.define_from_variant('ENABLE_XXHASH', 'xxhash')
                 ] 
-        res.append('-DCMAKE_MODULE_PATH=' + self.spec['ecbuild'].prefix + '/share/ecbuild/cmake')
         return res
 

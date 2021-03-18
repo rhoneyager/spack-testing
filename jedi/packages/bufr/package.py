@@ -19,7 +19,6 @@ class Bufr(CMakePackage):
     version('develop', branch='develop')
     version('11.4.0', commit='eaa10dda59ad166aeef6b8d59be929ef621856fb', preferred=True)
 
-    #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
     variant('docs', default=False)
     depends_on('doxygen', when='+doxygen')
     variant('python', default=False)

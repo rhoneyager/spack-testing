@@ -24,8 +24,5 @@ class Ecbuild(CMakePackage):
     version('3.2.0', commit='9dcf4c6f80c2cbd349f110af53c0256f1687d160')
     version('3.1.0', commit='457e7ea1c78dcfe0cef51e6ea886b7c53a0c94c3')
 
-    depends_on('cmake @3.10:', type=('build', 'run', 'link'))
-
-    def cmake_args(self):
-        return []
+    #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
 

@@ -21,7 +21,6 @@ class Fckit(CMakePackage):
     version('0.8.0', commit='4cd749f1eeac64eece00adb50abd072ea14fa2b1')
     version('0.7.0', commit='5a9ad884c087ae4c188a5937acf078514519778f')
 
-    #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
     depends_on('ecbuild', type=('build'))
 
     variant('eckit', default=True)
@@ -31,6 +30,5 @@ class Fckit(CMakePackage):
         res = [
                 self.define_from_variant('ENABLE_ECKIT', 'eckit')
                 ] 
-        res.append('-DCMAKE_MODULE_PATH=' + self.spec['ecbuild'].prefix + '/share/ecbuild/cmake')
         return res
 

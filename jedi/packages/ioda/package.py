@@ -21,7 +21,6 @@ class Ioda(CMakePackage):
     version('develop', branch='develop')
     version('1.0.0', commit='3cbf1449f6a2caac946232d91d473a70585054c7')
 
-    #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
     depends_on('ecbuild', type=('build'))
     depends_on('jedi-cmake', type=('build'))
     depends_on('eckit')
@@ -41,6 +40,5 @@ class Ioda(CMakePackage):
 
     def cmake_args(self):
         res = [] 
-        res.append('-DCMAKE_MODULE_PATH=' + self.spec['ecbuild'].prefix + '/share/ecbuild/cmake')
         return res
 

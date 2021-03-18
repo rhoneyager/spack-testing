@@ -16,10 +16,8 @@ class JediCmake(CMakePackage):
     maintainers = ['rhoneyager', 'mmiesch']
 
     version('master', branch='master')
-    version('develop', branch='develop')
-    version('fixtest', branch='feature/export_functions', preferred=True)
+    version('develop', branch='develop', preferred=True)
     version('1.0.0', commit='3f59be473037bd3d21df90c7a3f200d8012f679e')
 
-    depends_on('cmake @3.10:', type=('build', 'run'))
-    #depends_on('ecbuild', type=('build'))
+    depends_on('cmake @3.10:', type=('build'))
 
