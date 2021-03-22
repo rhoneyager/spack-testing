@@ -16,8 +16,8 @@ class Ioda(CMakePackage):
     maintainers = ['rhoneyager', 'mmiesch']
 
     version('master', branch='master')
-    version('ioda-v2', branch='feature/ioda-v2')
-    version('jedicmake', branch='bugfix/jedicmake', preferred=True)
+    version('ioda-v2', branch='feature/ioda-v2', preferred=True)
+    version('jedicmake', branch='bugfix/jedicmake')
     version('develop', branch='develop')
     version('1.0.0', commit='3cbf1449f6a2caac946232d91d473a70585054c7')
 
