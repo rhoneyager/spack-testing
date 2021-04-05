@@ -15,8 +15,8 @@ class JediCmake(CMakePackage):
 
     maintainers = ['rhoneyager', 'mmiesch']
 
-    version('master', branch='master')
-    version('develop', branch='develop', preferred=True)
+    version('master', branch='master', no_cache=True)
+    version('develop', branch='develop', preferred=True, no_cache=True)
     version('1.0.0', commit='3f59be473037bd3d21df90c7a3f200d8012f679e')
 
     depends_on('cmake @3.10:', type=('build'))

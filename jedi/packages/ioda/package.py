@@ -15,10 +15,10 @@ class Ioda(CMakePackage):
 
     maintainers = ['rhoneyager', 'mmiesch']
 
-    version('master', branch='master')
-    version('ioda-v2', branch='feature/ioda-v2', preferred=True)
-    version('jedicmake', branch='bugfix/jedicmake')
-    version('develop', branch='develop')
+    version('master', branch='master', no_cache=True)
+    version('ioda-mass-var-creation', branch='feature/ioda-v2-flywheel-var-creation', no_cache=True, preferred=True)
+    version('ioda-v2', branch='feature/ioda-v2', no_cache=True)
+    version('develop', branch='develop', no_cache=True)
     version('1.0.0', commit='3cbf1449f6a2caac946232d91d473a70585054c7')
 
     depends_on('ecbuild', type=('build'))

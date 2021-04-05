@@ -15,9 +15,9 @@ class Ufo(CMakePackage):
 
     maintainers = ['rhoneyager']
 
-    version('master', branch='master')
-    version('ioda-v2', branch='feature/ioda-v2', preferred=True)
-    version('develop', branch='develop')
+    version('master', branch='master', no_cache=True)
+    version('ioda-v2', branch='feature/ioda-v2', preferred=True, no_cache=True)
+    version('develop', branch='develop', no_cache=True)
     version('1.0.0', commit='68dab85486f5d79991956076ac6b962bc1a0c5bd')
 
     # Optional: CRTM, RTTOV, GSW, ROPP-UFO, GEOS-AERO
