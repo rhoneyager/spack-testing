@@ -17,6 +17,8 @@ class Fckit(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='develop')
+    version('0.9.2', commit='26439f09a421b29d745f4c4810d7d40f2820f5ec', preferred=True)
+    version('0.9.1', commit='0b2c04d29ff141d1963e21da2add2e70f01163ce')
     version('0.9.0', commit='9cd993a524264e079ae260dbc89faea599e270fc')
     version('0.8.0', commit='4cd749f1eeac64eece00adb50abd072ea14fa2b1')
     version('0.7.0', commit='5a9ad884c087ae4c188a5937acf078514519778f')
