@@ -17,7 +17,8 @@ class Bufr(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='develop')
-    version('11.4.0', commit='eaa10dda59ad166aeef6b8d59be929ef621856fb', preferred=True)
+    version('11.5.0', commit='a3cddb6c846152a93e168c07152634508f9590f0', preferred=True)
+    version('11.4.0', commit='eaa10dda59ad166aeef6b8d59be929ef621856fb')
 
     variant('docs', default=False)
     depends_on('doxygen', when='+doxygen')
