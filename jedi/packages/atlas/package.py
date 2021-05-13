@@ -17,6 +17,8 @@ class Atlas(CMakePackage):
 
     version('master', branch='master')
     version('develop', branch='develop')
+    version('0.24.1', commit='36772b5a72f91e99b30756808d8cff6edb415b8f', preferred=True)
+    version('0.24.0', commit='071bbb18c1fe3eac9d19557cc4490995e0af5184')
     version('0.23.0', commit='7e0a1251685e07a5dcccc84f4d9251d5a066e2ee')
     version('0.22.1', commit='e55e9c72883d24e3ed4d4eaaae330825a2d77dd3')
     version('0.22.0', commit='a70030278541d4c4e18ebf92b683951749d60049')
