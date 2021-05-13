@@ -14,6 +14,7 @@ class Ecbuild(CMakePackage):
 
     maintainers = ['rhoneyager', 'mmiesch']
 
+    version('3.6.2', commit='28a007d15059be24fb65439adf7633ce8b65abe1')
     version('3.5.0', commit='70f224596cf0058567bed2021bec0481742f9f63')
     version('3.4.1', commit='d4347cf92466c742ef989444b2acbf7c867a338e')
     version('3.4.0', commit='d18a2dfa4a350881bfdded080880eaa47d2361f8')
