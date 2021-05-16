@@ -32,7 +32,7 @@ class JediSdkBase(BundlePackage):
 
     else:
         depends_on('boost~atomic~chrono~clanglibcpp~container~context~coroutine~date_time~debug~exception~fiber~filesystem~graph~icu~iostreams~locale~log~math~mpi+multithreaded~numpy~pic~program_options~python~random~regex~serialization+shared~signals~singlethreaded+system~taggedlayout~test+thread~timer~versionedlayout~wave cxxstd=14 visibility=hidden')
-        depends_on('cgal+header-only', type='build')
+        depends_on('cgal+header_only', type='build')
         depends_on('cmake', type='build')
         depends_on('ecbuild', type='build')
         depends_on('eigen', type='build')
