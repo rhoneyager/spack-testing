@@ -22,7 +22,7 @@ class JediSdkBase(BundlePackage):
         depends_on('autoconf%apple-clang', type='build') # Required compiler on Apple
         # TODO: Redirect boost on Intel paired with clang.
         depends_on('boost~atomic~chrono~clanglibcpp~container~context~coroutine~date_time~debug~exception~fiber~filesystem~graph~icu~iostreams~locale~log~math~mpi+multithreaded~numpy~pic~program_options~python~random~regex~serialization+shared~signals~singlethreaded+system~taggedlayout~test+thread~timer~versionedlayout~wave cxxstd=14 visibility=hidden %apple-clang') # Header only / req compiler on Apple for install to succeed.
-        depends_on('cgal+header-only%apple-clang', type='build') # Header only / req compiler
+        depends_on('cgal+header_only%apple-clang', type='build') # Header only / req compiler
         depends_on('cmake%apple-clang', type='build') # Required compiler on Apple
         depends_on('ecbuild%apple-clang', type='build') # Header only
         depends_on('eigen%apple-clang', type='build') # Header only
