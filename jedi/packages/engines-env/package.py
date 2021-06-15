@@ -6,7 +6,7 @@
 import os
 from spack import *
 
-class IodaEnv(BundlePackage):
+class EnginesEnv(BundlePackage):
     """Interface for Observation Data Access development environment.."""
 
     homepage = "https://github.com/rhoneyager/spack-fake-package"
@@ -16,23 +16,8 @@ class IodaEnv(BundlePackage):
 
     version('main', branch='main')
 
-    depends_on('cmake')
-    depends_on('ecbuild')
     depends_on('jedi-cmake')
-    depends_on('eckit')
-    depends_on('fckit')
-    depends_on('atlas')
     depends_on('jedi-sdk-base')
-    depends_on('oops')
-    depends_on('hdf5')
-    depends_on('netcdf-c@:4.7.4')
-    depends_on('gsl-lite')
-
-    variant('bufr', default=False)
-    depends_on('bufr', when='+bufr')
-
-    variant('odc', default=False)
-    depends_on('odc', when='+odc')
 
     variant('python', default=True)
     depends_on('python@3.7:', when='+python')

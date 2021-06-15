@@ -46,7 +46,7 @@ class JediSdkBase(BundlePackage):
     depends_on('szip')
     depends_on('hdf5@1.12.0+hl+szip') # 1.12 needed for jedi. Make optional? C interface only. MPI.
     # depends_on('parallel-netcdf')
-    depends_on('netcdf-c') # C interface only. MPI.
+    depends_on('netcdf-c@:4.7.4') # C interface only. MPI. Do not use 4.8.0 yet.
     depends_on('netcdf-fortran') # buggy on macos 10.11. Need Fortran compiler. MPI.
     depends_on('nccmp') # Need only one version of this? MPI.
 

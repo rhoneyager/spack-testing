@@ -21,7 +21,7 @@ class Bufr(CMakePackage):
     version('11.4.0', commit='eaa10dda59ad166aeef6b8d59be929ef621856fb')
 
     variant('docs', default=False)
-    depends_on('doxygen', when='+doxygen')
+    depends_on('doxygen', when='+docs')
     variant('python', default=False)
     depends_on('python', when='+python')
 
