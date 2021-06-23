@@ -2,21 +2,21 @@
 	"builders": [
 		{
 			"type": "lxd",
-			"name": "jedi-node-lxd",
+			"name": "lxd",
 			"image": "ubuntu:focal",
-			"output_image": "jedi/u2004",
+			"output_image": "spack-jedi/u2004",
 			"publish_properties": {
 				"description": "Spackified jedi node"
 			}
 		},
 		{
 			"type": "amazon-ebs",
-			"name": "jedi-node-aws",
-			"ami_name": "ryan-jedi-node-u2004 ${local.timestamp}",
+			"name": "aws_us-east-1",
+			"ami_name": "ryan-spack-jedi-node-u2004 {{timestamp}}",
 			"ami_description": "Spackified JEDI stack and AWS node",
 			"region": "us-east-1",
 			"instance_type": "t2.small",
-			"source_ami": "ami-0b75998a97c952252",
+			"source_ami": "ami-0dd76f917833aac4b",
 			"ssh_username": "ubuntu"
 		}
 	],
@@ -25,7 +25,7 @@
 			"type": "shell",
 			"inline": [
 				"export DEBIAN_FRONTEND=noninteractive",
-				"sudo apt update",
+				"sudo apt-get update",
 				"sudo apt upgrade -y",
 				"sudo apt install -y --no-install-recommends autoconf automake bash bison bzip2 diffutils findutils flex git krb5-user libkrb5-dev libtool m4 libncurses-dev libssl-dev ninja-build openjdk-11-jdk perl pkg-config python3 ruby tar texinfo xz-utils",
 				"sudo apt install -y --no-install-recommends bc build-essential clang-format clang-tidy csh curl file gdb ksh less lldb lsb-release man-db nano openssh-server screen tcl tcsh time tk unzip vim-nox wget wish",
