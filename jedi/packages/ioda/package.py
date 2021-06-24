@@ -27,6 +27,7 @@ class Ioda(CMakePackage):
     depends_on('atlas')
     depends_on('jedi-sdk-base')
     depends_on('oops@1.0.0', when='@1.0.0')
+    depends_on('oops@1.1.0', when='@2.0.0')
     depends_on('oops')
     depends_on('hdf5')
     depends_on('netcdf-c')
