@@ -16,8 +16,8 @@ class Ufo(CMakePackage):
     maintainers = ['rhoneyager']
 
     version('master', branch='master', no_cache=True)
-    version('ioda-v2', branch='feature/ioda-v2', preferred=True, no_cache=True)
-    version('develop', branch='develop', no_cache=True)
+    version('develop', branch='develop', preferred=True, no_cache=True)
+    version('1.1.0', commit='2af9b91433553ca473c72fcd131400a01c3aabdb')
     version('1.0.0', commit='68dab85486f5d79991956076ac6b962bc1a0c5bd')
 
     # Optional: CRTM, RTTOV, GSW, ROPP-UFO, GEOS-AERO
@@ -25,7 +25,11 @@ class Ufo(CMakePackage):
     depends_on('jedi-cmake')
     depends_on('jedi-sdk-base')
     depends_on('oops')
+    depends_on('oops@1.0.0', when='@1.0.0')
+    depends_on('oops@1.1.0', when='@1.1.0')
     depends_on('ioda')
+    depends_on('ioda@1.0.0', when='@1.0.0')
+    depends_on('ioda@2.0.0', when='@1.1.0')
 
     def cmake_args(self):
         res = [] 

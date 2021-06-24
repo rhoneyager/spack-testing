@@ -17,6 +17,7 @@ class Oops(CMakePackage):
 
     version('master', branch='master', no_cache=True)
     version('develop', branch='develop', preferred=True, no_cache=True)
+    version('1.1.0', commit='0a07af4672732aed1d2a279519670064696bcfbe')
     version('1.0.0', commit='40e85e4772d395ea3df2ed29ad660f35c0d7dcb5')
 
     #depends_on('cmake @3.10:', type=('build', 'run', 'link'))

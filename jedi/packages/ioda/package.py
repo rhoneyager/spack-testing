@@ -17,6 +17,7 @@ class Ioda(CMakePackage):
 
     version('master', branch='master', no_cache=True)
     version('develop', branch='develop', no_cache=True, preferred=True)
+    version('2.0.0', commit='ec4e7b526025a6f8b31389c3337eb986c8e9db6b')
     version('1.0.0', commit='3cbf1449f6a2caac946232d91d473a70585054c7')
 
     depends_on('ecbuild', type=('build'))
@@ -25,6 +26,7 @@ class Ioda(CMakePackage):
     depends_on('fckit')
     depends_on('atlas')
     depends_on('jedi-sdk-base')
+    depends_on('oops@1.0.0', when='@1.0.0')
     depends_on('oops')
     depends_on('hdf5')
     depends_on('netcdf-c')
