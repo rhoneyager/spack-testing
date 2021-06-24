@@ -17,8 +17,8 @@ class Oops(CMakePackage):
 
     version('master', branch='master', no_cache=True, url="https://github.com/JCSDA/oops.git")
     version('develop', branch='develop', preferred=True, no_cache=True)
-    version('1.1.0', commit='0a07af4672732aed1d2a279519670064696bcfbe', url="https://github.com/JCSDA/oops.git")
-    version('1.0.0', commit='40e85e4772d395ea3df2ed29ad660f35c0d7dcb5', url="https://github.com/JCSDA/oops.git")
+    version('1.1.0', url="https://github.com/JCSDA/oops/archive/refs/tags/1.1.0.tar.gz", sha256='f3ef7d33b57246127bb9bfe63d99923b811247c72e085fabb90a7cfbc84d2ec5')
+    version('1.0.0', url=",https://github.com/JCSDA/oops/archive/refs/tags/1.0.0.tar.gz", sha256='24559483938e3dcde2a55aad6d53f6cbacb057d4fc13bc88731ff040b98d2757')
 
     #depends_on('cmake @3.10:', type=('build', 'run', 'link'))
     depends_on('ecbuild', type=('build'))
