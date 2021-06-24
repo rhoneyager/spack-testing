@@ -1,0 +1,25 @@
+modules:
+  default:
+    enable:
+      - lmod
+    lmod:
+      core_specs:
+        - 'autoconf'
+        - 'automake'
+        - 'bash'
+        - 'bison'
+        - 'cmake'
+        - 'ecbuild'
+        - 'eigen'
+        - 'flex'
+        - 'gsl-lite'
+        - 'jedi-cmake'
+        - 'perl'
+        - 'python'
+        - 'ruby'
+        - 'tcl'
+        - 'tcsh'
+        - 'vim'
+      hierarchy:
+        - mpi
+
