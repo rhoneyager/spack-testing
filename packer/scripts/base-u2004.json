@@ -37,7 +37,7 @@
 				"export DEBIAN_FRONTEND=noninteractive",
 				"sudo -E apt-get update",
 				"sudo -E apt-get upgrade -y",
-				"sudo -E apt-get install -y --no-install-recommends autoconf automake bash bison bzip2 diffutils findutils flex git krb5-user libkrb5-dev libtool m4 libncurses-dev libssl-dev ninja-build openjdk-11-jdk perl pkg-config python3 ruby tar texinfo xz-utils",
+				"sudo -E apt-get install -y --no-install-recommends autoconf automake bash bison bzip2 diffutils findutils flex git krb5-user libkrb5-dev libtool m4 libncurses-dev libpython3-dev libssl-dev ninja-build openjdk-11-jdk perl pkg-config python3 pyton3-dev ruby tar texinfo xz-utils",
 				"sudo -E apt-get install -y --no-install-recommends bc build-essential clang-format clang-tidy csh curl file gdb ksh less lldb lsb-release man-db nano openssh-server screen tcl tcsh time tk unzip vim-nox wget wish",
 				"sudo -E apt-get install -y --no-install-recommends gcc-10 g++-10 gfortran-10",
 				"sudo -E apt-get install -y --no-install-recommends gcc-9 g++-9 gfortran-9",
