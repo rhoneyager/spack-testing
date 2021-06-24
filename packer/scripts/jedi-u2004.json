@@ -16,7 +16,7 @@
 			"ami_name": "ryan-spack-u2004 {{timestamp}}",
 			"ami_description": "JEDI image for spack",
 			"region": "us-east-1",
-			"instance_type": "t2.small",
+			"instance_type": "c4.4xlarge",
 			"source_ami_filter": {
 				"filters": {
 					"name": "*ryan-base-u2004*",
