@@ -17,8 +17,8 @@ class Ioda(CMakePackage):
 
     version('master', branch='master', no_cache=True)
     version('develop', branch='develop', no_cache=True, preferred=True)
-    version('2.0.0', commit='ec4e7b526025a6f8b31389c3337eb986c8e9db6b')
-    version('1.0.0', commit='3cbf1449f6a2caac946232d91d473a70585054c7')
+    version('2.0.0', url="https://github.com/JCSDA/ioda/archive/refs/tags/2.0.0.tar.gz", sha256='bdea62c573930223a6f5e080cef960343d220dbcc126b4e55639c63a1219e5a2')
+    version('1.0.0', url="https://github.com/JCSDA/ioda/archive/refs/tags/1.0.0.tar.gz", sha256='7e1bedaf1c8100b2f2f53c9bf733f2861369ab9421172d6528ca763c989a75f6')
 
     depends_on('ecbuild', type=('build'))
     depends_on('jedi-cmake', type=('build'))
