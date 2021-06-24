@@ -6,15 +6,15 @@
 		{
 			"type": "lxd",
 			"image": "ubuntu:focal",
-			"output_image": "spack/u2004",
+			"output_image": "jedi_spack_base/u2004",
 			"publish_properties": {
 				"description": "Spackified base image"
 			}
 		},
 		{
 			"type": "amazon-ebs",
-			"ami_name": "ryan-spack-u2004 {{timestamp}}",
-			"ami_description": "JEDI image for spack",
+			"ami_name": "ryan-spack-base-u2004 {{timestamp}}",
+			"ami_description": "JEDI base image for spack",
 			"region": "us-east-1",
 			"instance_type": "c4.4xlarge",
 			"source_ami_filter": {
