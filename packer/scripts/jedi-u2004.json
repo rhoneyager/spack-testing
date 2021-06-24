@@ -64,9 +64,7 @@
 				"sudo echo \". /opt/spack/share/spack/setup-env.sh\" >> ~ubuntu/.bashrc",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack install py-numpy py-pip python'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack activate py-pip'",
-				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack activate py-numpy'",
-				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack load python'",
-				"sudo -H -u ubuntu bash -c 'pip install jupyterlab'"
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack activate py-numpy'"
 			]
 		}
 	]
