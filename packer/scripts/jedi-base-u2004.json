@@ -59,6 +59,7 @@
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack compiler find'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack mirror add --scope site jcsda https://s3.amazonaws.com/us-east-1.spack.jcsda.org/jcsda/'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack buildcache keys --install --trust'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack gpg trust A83D615FAEA14BF0563673B957D695576582A5C4'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack solve clingo'",
 				"sudo -H -u ubuntu cp /tmp/opt/spack/etc/spack/* /opt/spack/etc/spack/",
 				"sudo rm -rf /tmp/opt",
