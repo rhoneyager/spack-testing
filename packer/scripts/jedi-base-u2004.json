@@ -57,6 +57,7 @@
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:python'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:openssl'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack compiler find'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack mirror add --scope site jcsda https://s3.amazonaws.com/us-east-1.spack.jcsda.org/jcsda/'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack solve clingo'",
 				"sudo -H -u ubuntu cp /tmp/opt/spack/etc/spack/* /opt/spack/etc/spack/",
 				"sudo rm -rf /tmp/opt",
