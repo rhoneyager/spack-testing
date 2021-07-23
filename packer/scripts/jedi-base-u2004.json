@@ -6,7 +6,7 @@
 		{
 			"type": "lxd",
 			"image": "ubuntu:focal",
-			"output_image": "jedi_spack_base/u2004",
+			"output_image": "base/u2004",
 			"publish_properties": {
 				"description": "Spackified base image"
 			}
@@ -43,6 +43,8 @@
 				"if ! id ubuntu; then sudo useradd -U -k /etc/skel -s /bin/bash -d /home/ubuntu -m ubuntu; fi",
 				"sudo echo \"ulimit -s unlimited\" >> ~ubuntu/.bashrc",
 				"sudo echo \"ulimit -v unlimited\" >> ~ubuntu/.bashrc",
+				"sudo echo \"export EDITOR=vim\" >> ~ubuntu/.bashrc",
+				"sudo echo \"export PAGER=less\" >> ~ubuntu/.bashrc",
 				"sudo echo \"export PATH=$PATH:/home/ubuntu/spack/bin\" >> ~ubuntu/.bashrc",
 				"sudo printf \"[credential]\n helper = cache --timeout=7200\n\" >> ~ubuntu/.gitconfig",
 				"sudo mkdir -p ~ubuntu/.openmpi",
@@ -54,12 +56,17 @@
 				"sudo -H -u ubuntu bash -c 'git clone https://github.com/spack/spack.git /opt/spack'",
 				"sudo -H -u ubuntu bash -c 'git clone https://github.com/rhoneyager/spack-testing.git /opt/spack/ryan'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack external find --not-buildable --scope site'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:cmake'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:python'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:openssl'",
-				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack compiler find'",
+				". /opt/intel/oneapi/setvars.sh",
+				"export PATH=$PATH:/opt/nvidia/hpc_sdk/Linux_x86_64/2021/compilers/bin",
+				"sudo -E -H -u ubuntu bash -c '/opt/spack/bin/spack compiler find --scope site'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack mirror add --scope site jcsda https://s3.amazonaws.com/us-east-1.spack.jcsda.org/jcsda/'",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack buildcache keys --install --trust'",
-				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack gpg trust A83D615FAEA14BF0563673B957D695576582A5C4'",
+				"wget https://s3.amazonaws.com/us-east-1.spack.jcsda.org/jcsda/build_cache/_pgp/A83D615FAEA14BF0563673B957D695576582A5C4.pub -O /tmp/A83D615FAEA14BF0563673B957D695576582A5C4",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack gpg trust /tmp/A83D615FAEA14BF0563673B957D695576582A5C4'",
+				"sudo rm /tmp/A83D615FAEA14BF0563673B957D695576582A5C4",
 				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack solve clingo'",
 				"sudo -H -u ubuntu cp /tmp/opt/spack/etc/spack/* /opt/spack/etc/spack/",
 				"sudo rm -rf /tmp/opt",

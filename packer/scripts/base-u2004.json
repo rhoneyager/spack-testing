@@ -16,7 +16,7 @@
 			"ami_name": "ryan-base-u2004 {{timestamp}}",
 			"ami_description": "Base image for spack",
 			"region": "us-east-1",
-			"instance_type": "t2.small",
+			"instance_type": "c4.4xlarge",
 			"source_ami_filter": {
 				"filters": {
 					"name": "*ubuntu-focal-20.04-amd64-server-*",
@@ -27,7 +27,13 @@
 				"owners": ["099720109477"]
 			},
 			"ami_regions": "{{user `destination_regions`}}",
-			"ssh_username": "ubuntu"
+			"ssh_username": "ubuntu",
+			"launch_block_device_mappings": [
+				{
+					"device_name": "/dev/sda1",
+					"volume_size": 80
+				}
+			]
 		}
 	],
 	"provisioners": [
@@ -35,20 +41,28 @@
 			"type": "shell",
 			"inline": [
 				"export DEBIAN_FRONTEND=noninteractive",
+				"wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB -O - | sudo apt-key add -",
+				"cd /tmp",
+				"wget https://developer.download.nvidia.com/hpc-sdk/21.5/nvhpc-21-5_21.5_amd64.deb https://developer.download.nvidia.com/hpc-sdk/21.5/nvhpc-2021_21.5_amd64.deb",
+				"sudo -E apt-get update",
+				"sudo -E apt-get install -y /tmp/nvhpc-21-5_21.5_amd64.deb /tmp/nvhpc-2021_21.5_amd64.deb",
+				"sudo -E rm /tmp/nvhpc*",
+				"sudo -E apt-get install -y software-properties-common",
+				"sudo -E add-apt-repository -y ppa:ubuntu-toolchain-r/test",
+				"sudo -E add-apt-repository -y \"deb https://apt.repos.intel.com/oneapi all main\"",
 				"sudo -E apt-get update",
 				"sudo -E apt-get upgrade -y",
-				"sudo -E apt-get install -y --no-install-recommends autoconf automake bash bison bzip2 diffutils findutils flex git krb5-user libkrb5-dev libtool lmod m4 libncurses-dev libpython3-dev libssl-dev ninja-build openjdk-11-jdk perl pkg-config python3 python3-dev ruby tar texinfo xz-utils",
-				"sudo -E apt-get install -y --no-install-recommends bc build-essential clang-format clang-tidy csh curl file gdb ksh less lldb lsb-release man-db nano openssh-server screen tcl tcsh time tk unzip vim-nox wget wish",
-				"sudo -E apt-get install -y --no-install-recommends gcc-10 g++-10 gfortran-10",
-				"sudo -E apt-get install -y --no-install-recommends gcc-9 g++-9 gfortran-9",
-				"sudo -E apt-get install -y --no-install-recommends gcc-8 g++-8 gfortran-8",
-				"sudo -E apt-get install -y --no-install-recommends clang-11 clang-10 clang-9",
-				"sudo update-alternatives --install /usr/bin/g++ g++ $(which g++-10) 30",
-				"sudo update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 30",
-				"sudo update-alternatives --install /usr/bin/gcov gcov $(which gcov-10) 30",
-				"sudo update-alternatives --install /usr/bin/gfortran gfortran $(which gfortran-10) 30",
-				"sudo update-alternatives --install /usr/bin/clang clang $(which clang-11) 30",
-				"sudo update-alternatives --install /usr/bin/clang++ clang++ $(which clang-11) 30"
+				"sudo -E apt-get install -y --no-install-recommends aptitude autoconf automake bash bc bison build-essential bzip2 clang-format clang-tidy csh curl diffutils file findutils flex gdb git gnupg2 ksh krb5-user less libkrb5-dev libncurses-dev libpython3-dev libssl-dev libtool lldb lmod lsb-release m4 man-db nano ninja-build openjdk-11-jdk openssh-server perl pkg-config python3 python3-dev ruby screen tar tcl texinfo time tk unzip vim-nox wget wish xz-utils",
+				"sudo -E apt-get install -y --no-install-recommends gcc-11 g++-11 gfortran-11 gcc-10 g++-10 gfortran-10 gcc-9 g++-9 gfortran-9 gcc-8 g++-8 gfortran-8 clang-12 clang-11 clang-10 clang-9",
+				"sudo -E apt-get install -y intel-basekit intel-hpckit",
+				"sudo -E update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-11 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-11  --slave /usr/bin/cpp cpp /usr/bin/cpp-11 --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-11",
+				"sudo -E update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-10 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-10  --slave /usr/bin/cpp cpp /usr/bin/cpp-10 --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-10",
+				"sudo -E update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-9 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-9  --slave /usr/bin/cpp cpp /usr/bin/cpp-9 --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-9",
+				"sudo -E update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-8 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-8  --slave /usr/bin/cpp cpp /usr/bin/cpp-8 --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-8",
+				"sudo -E update-alternatives --install /usr/bin/clang clang $(which clang-12) 120 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-12",
+				"sudo -E update-alternatives --install /usr/bin/clang clang $(which clang-11) 110 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-11",
+				"sudo -E update-alternatives --install /usr/bin/clang clang $(which clang-10) 100 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-10",
+				"sudo -E update-alternatives --install /usr/bin/clang clang $(which clang-9) 90 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-9"
 			]
 		}
 	]
