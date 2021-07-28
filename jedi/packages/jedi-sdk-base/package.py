@@ -44,9 +44,9 @@ class JediSdkBase(BundlePackage):
     depends_on('udunits') # Local package definition. 2.2.24 is broken on macos. 2.2.28 works.
     depends_on('openblas') # Depends on which MPI works for the system. Needs some pref config.
     depends_on('szip')
-    depends_on('hdf5@1.12.0+hl+szip') # 1.12 needed for jedi. Make optional? C interface only. MPI.
+    depends_on('hdf5@1.12.0:+hl+szip') # 1.12 needed for jedi. Make optional? C interface only. MPI.
     # depends_on('parallel-netcdf')
-    depends_on('netcdf-c@:4.7.4') # C interface only. MPI. Do not use 4.8.0 yet.
+    depends_on('netcdf-c@:4.7.9') # C interface only. MPI. Do not use 4.8.0 yet.
     depends_on('netcdf-fortran') # buggy on macos 10.11. Need Fortran compiler. MPI.
     depends_on('nccmp') # Need only one version of this? MPI.
 
