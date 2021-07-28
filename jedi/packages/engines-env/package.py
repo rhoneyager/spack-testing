@@ -19,12 +19,6 @@ class EnginesEnv(BundlePackage):
     depends_on('jedi-cmake')
     depends_on('jedi-sdk-base')
 
-    # Set to make cmake run better
-    depends_on('cmake', type=('build', 'run'))
-    depends_on('ecbuild', type=('build', 'run'))
-    depends_on('eigen', type=('build', 'run'))
-    depends_on('gsl-lite', type=('build', 'run'))
-
     variant('python', default=True)
     depends_on('python@3.7:', when='+python')
     depends_on('py-pybind11', when='+python')
