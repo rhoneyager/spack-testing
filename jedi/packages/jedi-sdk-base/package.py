@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from spack import *
-import sys
 
 class JediSdkBase(BundlePackage):
     """Base packages for jedi."""
