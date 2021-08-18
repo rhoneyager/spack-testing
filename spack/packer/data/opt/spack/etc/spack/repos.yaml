@@ -1,0 +1,4 @@
+repos:
+  - /opt/spack/jedi-stack/spack/repos/jedi_stack_components
+  - /opt/spack/jedi-stack/spack/repos/jedi_components
+  - /opt/spack/jedi-stack/spack/repos/jedi_environments

@@ -1,0 +1,80 @@
+{
+	"variables": {
+		"destination_regions": "us-east-1"
+	},
+	"builders": [
+		{
+			"type": "lxd",
+			"image": "ubuntu:focal",
+			"output_image": "spack/u2004",
+			"publish_properties": {
+				"description": "Spackified image for JEDI. No stack built."
+			}
+		},
+		{
+			"type": "amazon-ebs",
+			"ami_name": "spack-u2004 {{timestamp}}",
+			"ami_description": "JEDI image for spack. No stack built.",
+			"region": "us-east-1",
+			"instance_type": "c4.4xlarge",
+			"source_ami_filter": {
+				"filters": {
+					"name": "*spack-base-u2004*",
+					"root-device-type": "ebs",
+					"virtualization-type": "hvm"
+				},
+				"most_recent": true,
+				"owners": ["469205354006"]
+			},
+			"ami_regions": "{{user `destination_regions`}}",
+			"ssh_username": "ubuntu"
+		}
+	],
+	"provisioners": [
+		{
+			"type": "file",
+			"source": "../data/opt",
+			"destination": "/tmp"
+		},
+		{
+			"type": "shell",
+			"inline": [
+				"export DEBIAN_FRONTEND=noninteractive",
+				"if ! id ubuntu; then sudo useradd -U -k /etc/skel -s /bin/bash -d /home/ubuntu -m ubuntu; fi",
+				"sudo echo \"ulimit -s unlimited\" >> ~ubuntu/.bashrc",
+				"sudo echo \"ulimit -v unlimited\" >> ~ubuntu/.bashrc",
+				"sudo echo \"export EDITOR=vim\" >> ~ubuntu/.bashrc",
+				"sudo echo \"export PAGER=less\" >> ~ubuntu/.bashrc",
+				"sudo echo \"export PATH=$PATH:/home/ubuntu/spack/bin\" >> ~ubuntu/.bashrc",
+				"sudo printf \"[credential]\n helper = cache --timeout=7200\n\" >> ~ubuntu/.gitconfig",
+				"sudo mkdir -p ~ubuntu/.openmpi",
+				"sudo chown -R ubuntu:ubuntu ~ubuntu/.openmpi",
+				"sudo echo \"rmaps_base_oversubscribe = 1\" >> ~ubuntu/.openmpi/mca-params.conf",
+				"sudo chown -R ubuntu:ubuntu ~ubuntu/.gitconfig ~ubuntu/.openmpi",
+				"sudo mkdir -p /opt",
+				"sudo chown -R ubuntu:ubuntu /opt",
+				"sudo -H -u ubuntu bash -c 'git clone https://github.com/spack/spack.git /opt/spack'",
+				"sudo -H -u ubuntu bash -c 'git clone https://github.com/rhoneyager/spack-testing.git /opt/spack/jedi-stack'",
+				"echo sudo -H -u ubuntu bash -c 'git clone https://github.com/JCSDA-internal/jedi-stack.git /opt/spack/jedi-stack'",
+				"sudo -H -u ubuntu bash -c 'cd /opt/spack/jedi-stack && git checkout feature/spack'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack external find --not-buildable --scope site'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:cmake'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:python'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack config --scope site remove packages:openssl'",
+				"echo . /opt/intel/oneapi/setvars.sh",
+				"echo export PATH=$PATH:/opt/nvidia/hpc_sdk/Linux_x86_64/2021/compilers/bin",
+				"sudo -E -H -u ubuntu bash -c '/opt/spack/bin/spack compiler find --scope site'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack solve clingo'",
+				"sudo -H -u ubuntu cp /tmp/opt/spack/etc/spack/* /opt/spack/etc/spack/",
+				"sudo rm -rf /tmp/opt",
+				"sudo rm -rf ~ubuntu/README",
+				"sudo echo \". /opt/spack/share/spack/setup-env.sh\" >> ~ubuntu/.bashrc",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack install py-numpy py-pip python'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack activate py-pip'",
+				"sudo -H -u ubuntu bash -c '/opt/spack/bin/spack activate py-numpy'"
+			]
+		}
+	]
+}
+
+
