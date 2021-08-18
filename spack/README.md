@@ -224,7 +224,11 @@ spack concretize
 Example where we just build ioda-engines (for speed):
 
 ```bash
-spack env activate my-spack-environment
+spack env create ioda-engines-environment
+spack env activate ioda-engines-environment
+spack install engines-env
+spack concretize
+
 git checkout https://github.com/JCSDA-internal/ioda.git
 cd ioda/src/engines
 mkdir build
@@ -234,10 +238,14 @@ make -j12
 ctest
 ```
 
-Example with a bundle:
+Example with a bundle and everything needed to build ioda:
 
 ```bash
-spack env activate my-spack-environment
+spack env create ioda-environment
+spack env activate ioda-environment
+spack install ioda-env
+spack concretize
+
 git checkout https://github.com/JCSDA-internal/ioda-bundle.git
 cd ioda-bundle
 mkdir build
@@ -261,8 +269,8 @@ ctest
     - [x] fftw
     - Unconsidered / untested: jasper, armadillo, xerces, nceplibs, tkdiff, pyjedi, geos, proj, ecflow, gptl, nco, pio, esmf, baselibs, pdtoolkit, tau2, fms
 - Bundles:
-    - [ ] ioda-bundle
-    - [ ] ufo-bundle
+    - [ ] ioda-bundle (*Needs minor changes to the environment.*)
+    - [ ] ufo-bundle  (*Needs minor changes to the environment.*)
 - Machines
     - [x] macOS - **NOTE**: Instructions needed. Needs the *clingo* concretizer. Is usually helps to pre-load some hard-to-build packages using HomeBrew first (gcc, llvm, mpfr, sqlite, openssl@1.1, python@3.9, git, git-lfs).
     - [x] Ubuntu 20.04 - **NOTE**: The AMI is built with quite a few packages and compilers pre-installed to speed up Spack build times.
@@ -274,4 +282,20 @@ ctest
     - [x] Intel 2021.3
     - [ ] oneAPI 2021.3 (icx)
     - [ ] nVidia HPC SDK (formerly PGI)
+
+
+# Errata
+
+#### Building a new AMI
+
+Scripts to build a new AMI are in the ```packer``` directory. [Packer](https://www.packer.io/) is a tool to build identical machine images for multiple platforms from a single source configuration. To build, first install Packer and then run:
+
+```bash
+cd /your/path/to/jedi-stack/spack/packer/scripts
+packer build -only=amazon-ebs base-u2004.json
+packer build -only=amazon-ebs jedi-base-u2004.json
+```
+
+**NOTE: Doing this supersedes the example AMI, which can break the Spack images used by other testers!**
+
 
