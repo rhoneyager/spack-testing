@@ -26,7 +26,7 @@ class JediEnv(BundlePackage):
     depends_on('eckit')
     depends_on('fckit')
     depends_on('atlas')
-    depends_on('oops')
+    #depends_on('oops')
     depends_on('hdf5')
     depends_on('netcdf-c@:4.7.4')
     depends_on('gsl-lite')
