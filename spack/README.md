@@ -26,6 +26,16 @@ ssh ubuntu@your_instance_ip_address
 
 It may take 1-2 minutes before SSH is ready.
 
+### Last-minute AMI updates
+
+Run this:
+
+```bash
+cd /opt/spack/jedi-stack/
+git pull
+cd ~
+```
+
 ### Looking around
 
 Spack is accessible using the ```spack``` command. There are many sub-commands that are detailed in the Spack documentation.
