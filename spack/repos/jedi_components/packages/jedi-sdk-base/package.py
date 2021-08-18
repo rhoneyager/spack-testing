@@ -26,7 +26,7 @@ class JediSdkBase(BundlePackage):
 
     depends_on('zlib+optimize+pic+shared', type=('build', 'run'))
 
-    depends_on('udunits', type=('build', 'run')) # Local package definition. 2.2.24 is broken on macos. 2.2.28 works.
+    depends_on('udunits', type=('build', 'link', 'run')) # Local package definition. 2.2.24 is broken on macos. 2.2.28 works.
     depends_on('openblas', type=('build', 'run')) # Depends on which MPI works for the system. Needs some pref config.
     depends_on('szip', type=('build', 'run'))
     depends_on('hdf5@1.12.0:+hl+szip', type=('build', 'run')) # 1.12 needed for jedi. Make optional? C interface only. MPI.
